@@ -17,6 +17,8 @@ builder.Services.AddSingleton(dataSource);
 
 builder.Services.AddScoped<BookRepository>();
 
+builder.Services.AddScoped<MemberRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
