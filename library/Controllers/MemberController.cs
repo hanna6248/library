@@ -1,6 +1,6 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using library.Data;
+using library.Models;
 
 namespace library.Controllers;
 
@@ -17,5 +17,24 @@ public class MembersController : Controller
     {
         var members = await _members.GetAllAsync();
         return View(members);
+    }
+
+    public IActionResult Create()
+    {
+        return View(new Member());
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(Member member)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(member);
+        }
+
+        await _members.AddAsync(member);
+
+        return RedirectToAction(nameof(Index));
     }
 }
