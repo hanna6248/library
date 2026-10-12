@@ -1,4 +1,5 @@
-﻿@model List<Book>
+﻿@model List<library.Models.Book>
+
 @{
     ViewData["Title"] = "Books";
 }
@@ -18,7 +19,7 @@
             <th>Title</th>
             <th>Category</th>
             <th class="text-end">Price</th>
-            <th style="width:10rem"></th>
+            <th class="text-end" style="width:12rem">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -27,14 +28,25 @@
             <tr>
                 <td class="text-end">@book.BookId</td>
                 <td>@book.Title</td>
-                <td><span class="badge text-bg-secondary">@(book.Category ?? "—")</span></td>
-                <td class="text-end">@(book.Price?.ToString("N2") ?? "—")</td>
+                <td>
+                    <span class="badge text-bg-secondary">
+                        @(book.Category ?? "—")
+                    </span>
+                </td>
                 <td class="text-end">
-                    <a asp-action="Edit" asp-route-id="@book.BookId" class="btn btn-sm btn-outline-secondary">Edit</a>            
-                    <a asp-action="Delete" asp-route-id="@book.BookId" class="btn btn-sm btn-outline-danger">Delete</a>
+                    @(book.Price?.ToString("N2") ?? "—")
+                </td>
+                <td class="text-end">
+                    <a asp-action="Edit"
+                       asp-route-id="@book.BookId"
+                       class="btn btn-sm btn-warning">Edit</a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@book.BookId"
+                       class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
+```

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using library.Data;
 using library.Models;
 
@@ -19,12 +20,27 @@ public class MembersController : Controller
         return View(members);
     }
 
+    // GET: Members/Create
     public IActionResult Create()
     {
         return View(new Member());
     }
 
+    // POST: Members/Create
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(Member member)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(member);
+        }
 
+        await _members.AddAsync(member);
+        return RedirectToAction(nameof(Index));
+    }
+
+    // GET: Members/Edit/5
     public async Task<IActionResult> Edit(long id)
     {
         var member = await _members.GetByIdAsync(id);
@@ -37,7 +53,7 @@ public class MembersController : Controller
         return View(member);
     }
 
-
+    // POST: Members/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(Member member)
@@ -48,21 +64,28 @@ public class MembersController : Controller
         }
 
         await _members.UpdateAsync(member);
-
         return RedirectToAction(nameof(Index));
     }
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(Member member)
+    // GET: Members/Delete/5
+    public async Task<IActionResult> Delete(long id)
     {
-        if (!ModelState.IsValid)
+        var member = await _members.GetByIdAsync(id);
+
+        if (member == null)
         {
-            return View(member);
+            return NotFound();
         }
 
-        await _members.AddAsync(member);
+        return View(member);
+    }
 
+    // POST: Members/Delete/5
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(long id)
+    {
+        await _members.DeleteAsync(id);
         return RedirectToAction(nameof(Index));
     }
 }
