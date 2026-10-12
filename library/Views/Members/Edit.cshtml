@@ -1,0 +1,37 @@
+﻿@model library.Models.Member
+
+@{
+    ViewData["Title"] = "Edit a member";
+}
+
+<h1>Edit a member</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="MemberId" />
+
+    <div class="mb-3">
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" type="email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MemberType" class="form-label"></label>
+        <select asp-for="MemberType" class="form-select">
+            <option value="Regular">Regular</option>
+            <option value="Student">Student</option>
+            <option value="Faculty">Faculty</option>
+        </select>
+        <span asp-validation-for="MemberType" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save changes</button>
+
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
