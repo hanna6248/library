@@ -1,0 +1,27 @@
+﻿@model library.Models.Note
+
+@{
+    ViewData["Title"] = "Delete Note";
+}
+
+<h1>Delete Note</h1>
+<p class="text-muted">Review the note before deleting it.</p>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+
+        <p class="card-text">
+            @(string.IsNullOrWhiteSpace(Model.Body) ? "—" : Model.Body)
+        </p>
+
+        <p class="text-muted mb-3">
+            Created on: @Model.CreatedOn.ToString("yyyy-MM-dd")
+        </p>
+
+        <form asp-action="Delete" asp-route-id="@Model.NoteId" method="post">
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
