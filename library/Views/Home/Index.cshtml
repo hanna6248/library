@@ -1,8 +1,73 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="library-hero">
+    <div class="hero-content">
+        <p class="hero-label">WELCOME TO OUR LIBRARY</p>
+        <h1>Books open<br />a bigger world.</h1>
+
+        <p class="hero-description">
+            Discover new ideas, explore different perspectives,
+            and find your next favourite book.
+            Our library is a welcoming space for everyone.
+        </p>
+
+        <div class="hero-buttons">
+            <a asp-controller="Books" asp-action="Index"
+               class="hero-button">
+                ♡ Browse Books →
+            </a>
+
+            <a asp-controller="Members" asp-action="Index"
+               class="hero-button hero-button-outline">
+                ♡ View Members →
+            </a>
+        </div>
+
+        <p class="hero-note">A little world inside every book. ♡</p>
+    </div>
+
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=85"
+             alt="Cozy library filled with bookshelves" />
+        <div class="image-caption">
+            <span>♡</span>
+            Your next chapter starts here.
+        </div>
+    </div>
+</section>
+
+<section class="welcome-section">
+    <div class="welcome-card">
+        <div class="welcome-icon">♡</div>
+        <p class="welcome-label">A PLACE TO DISCOVER</p>
+        <h2>Welcome to your library</h2>
+
+        <p>
+            Manage your collection of books and members
+            in one simple, welcoming space.
+        </p>
+
+        <div class="welcome-features">
+            <div class="welcome-feature">
+                <span class="feature-icon">📚</span>
+                <h3>Our Books</h3>
+                <p>Explore and manage your book collection.</p>
+                <a asp-controller="Books" asp-action="Index">
+                    Explore books →
+                </a>
+            </div>
+
+            <div class="welcome-feature">
+                <span class="feature-icon">♡</span>
+                <h3>Our Members</h3>
+                <p>View and manage your library members.</p>
+                <a asp-controller="Members" asp-action="Index">
+                    View members →
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+```
