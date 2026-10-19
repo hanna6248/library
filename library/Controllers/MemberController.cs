@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using library.Data;
 using library.Models;
 
@@ -20,13 +19,11 @@ public class MembersController : Controller
         return View(members);
     }
 
-    // GET: Members/Create
     public IActionResult Create()
     {
         return View(new Member());
     }
 
-    // POST: Members/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(Member member)
@@ -40,7 +37,6 @@ public class MembersController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    // GET: Members/Edit/5
     public async Task<IActionResult> Edit(long id)
     {
         var member = await _members.GetByIdAsync(id);
@@ -53,7 +49,6 @@ public class MembersController : Controller
         return View(member);
     }
 
-    // POST: Members/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(Member member)
@@ -67,7 +62,6 @@ public class MembersController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    // GET: Members/Delete/5
     public async Task<IActionResult> Delete(long id)
     {
         var member = await _members.GetByIdAsync(id);
@@ -80,7 +74,6 @@ public class MembersController : Controller
         return View(member);
     }
 
-    // POST: Members/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
