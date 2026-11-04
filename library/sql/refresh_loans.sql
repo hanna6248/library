@@ -17,4 +17,3 @@ SELECT CASE WHEN returned_on IS NOT NULL THEN 'Returned'
 FROM   lending.loan
 GROUP  BY 1
 ORDER  BY 1;
-
